@@ -1,38 +1,41 @@
-// Function to display notifications
-function displayNotification(type, message) {
-    const notificationContainer = document.getElementById('notification-container');
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.classList.add('notification', type);
-    notification.innerText = message;
-    
-    // Append notification to container
-    notificationContainer.appendChild(notification);
-    
-    // Remove notification after 5 seconds
-    setTimeout(() => {
-        notification.remove();
-    }, 5000);
-}
+// JavaScript code for interacting with the HTML elements
 
-// Example: Notify user when a price drop reminder is set
-function setPriceDropReminder(productUrl, desiredPrice) {
-    // Your logic to set price drop reminder goes here...
-    // For demonstration, let's assume the reminder is set successfully
-    displayNotification('info', `Price drop reminder set for ${productUrl} at ${desiredPrice}`);
-}
+// Function to perform some action when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Select the header element
+    const header = document.querySelector("header");
 
-// Example: Notify user when they sign up for coupon notifications
-function signUpForCouponNotifications(email) {
-    // Your logic to sign up for coupon notifications goes here...
-    // For demonstration, let's assume the sign-up is successful
-    displayNotification('success', `You've successfully signed up for coupon notifications at ${email}`);
-}
+    // Add a click event listener to the header element
+    header.addEventListener("click", function() {
+        // Alert a message when the header is clicked
+        alert("You clicked the header!");
+    });
 
-// Example usage
-document.addEventListener('DOMContentLoaded', function() {
-    // Trigger notifications
-    setPriceDropReminder('https://example.com/product', '$50');
-    signUpForCouponNotifications('example@example.com');
+    // Select the navigation links
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    // Loop through each navigation link and add a click event listener
+    navLinks.forEach(function(navLink) {
+        navLink.addEventListener("click", function(event) {
+            // Prevent the default behavior of the link (e.g., navigating to a new page)
+            event.preventDefault();
+
+            // Get the href attribute of the clicked link
+            const href = this.getAttribute("href");
+
+            // Log the href attribute to the console
+            console.log("Clicked link:", href);
+        });
+    });
+
+    // Function to change the background color of the footer when the mouse hovers over it
+    const footer = document.querySelector("footer");
+    footer.addEventListener("mouseover", function() {
+        this.style.backgroundColor = "#ffd1dc"; // Lighter pink
+    });
+
+    // Function to change the background color of the footer back to its original color when the mouse leaves it
+    footer.addEventListener("mouseleave", function() {
+        this.style.backgroundColor = "#ff80ab"; // Original pink
+    });
 });
